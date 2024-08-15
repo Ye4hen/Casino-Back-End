@@ -1,0 +1,249 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AuthDto {
+  accessToken: String
+  admin: Boolean
+  avatar: String! = "https://firebasestorage.googleapis.com/v0/b/course-project-326a3.appspot.com/o/user%2Fcasino-avatar.jpg?alt=media&token=35f4fb67-1de1-43b7-a26a-873983754d12"
+  balance: Float
+  bets: [BetItemInput!]! = []
+  cryptoAccount: String
+  email: String!
+  inventory: [InventoryItemInput!]! = []
+  login: String!
+  password: String!
+}
+
+type AuthModel {
+  accessToken: String
+  admin: Boolean
+  avatar: String!
+  balance: Float
+  bets: [BetItemModel!]!
+  createdAt: DateTime!
+  cryptoAccount: String
+  email: String!
+  id: String!
+  inventory: [InventoryItemModel!]!
+  login: String!
+  password: String!
+  updatedAt: DateTime!
+}
+
+input BetItemInput {
+  bet: Int!
+  coinId: String!
+  gameId: String!
+  id: String!
+}
+
+type BetItemModel {
+  bet: Int!
+  coinId: String!
+  gameId: String!
+  id: String!
+}
+
+input CoinDto {
+  category: String!
+  desc: String!
+  img: String!
+  name: String!
+  price: Float!
+}
+
+type CoinModel {
+  category: String!
+  createdAt: DateTime!
+  desc: String!
+  id: String!
+  img: String!
+  name: String!
+  price: Float!
+  updatedAt: DateTime!
+}
+
+input CoinUpdateDto {
+  category: String
+  desc: String
+  id: String!
+  img: String
+  name: String
+  price: Float
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input FaqDto {
+  answer: String!
+  isOpen: Boolean = false
+  question: String!
+}
+
+type FaqModel {
+  answer: String!
+  createdAt: DateTime!
+  id: String!
+  isOpen: Boolean
+  question: String!
+  updatedAt: DateTime!
+}
+
+input FaqUpdateDto {
+  answer: String
+  id: String!
+  isOpen: Boolean = false
+  question: String
+}
+
+input GameDto {
+  category: String!
+  img: String!
+  name: String!
+}
+
+type GameModel {
+  category: String!
+  createdAt: DateTime!
+  id: String!
+  img: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input GameUpdateDto {
+  category: String
+  id: String!
+  img: String
+  name: String
+}
+
+input InventoryItemInput {
+  amount: Int!
+  id: String!
+}
+
+type InventoryItemModel {
+  amount: Int!
+  id: String!
+}
+
+type Mutation {
+  createCoin(createDto: CoinDto!): CoinModel!
+  createFaq(createDto: FaqDto!): FaqModel!
+  createGame(createDto: GameDto!): GameModel!
+  createSlotsPrize(createDto: SlotsPrizeDto!): SlotsPrizeModel!
+  createUser(createDto: UsersCreateDto!): UserModel!
+  createWheelPrize(createDto: WheelPrizeDto!): WheelPrizeModel!
+  login(loginInput: AuthDto!): AuthModel!
+  register(registerInput: AuthDto!): AuthModel!
+  removeCoin(id: String!): CoinModel!
+  removeFaq(id: String!): FaqModel!
+  removeGame(id: String!): GameModel!
+  removeSlotsPrize(id: String!): SlotsPrizeModel!
+  removeUser(id: String!): UserModel!
+  removeWheelPrize(id: String!): WheelPrizeModel!
+  updateCoin(updateDto: CoinUpdateDto!): CoinModel!
+  updateFaq(updateDto: FaqUpdateDto!): FaqModel!
+  updateGame(updateDto: GameUpdateDto!): GameModel!
+  updateSlotsPrize(updateDto: SlotsPrizeUpdateDto!): SlotsPrizeModel!
+  updateUser(updateDto: UsersUpdateDto!): UserModel!
+  updateWheelPrize(updateDto: WheelPrizeUpdateDto!): WheelPrizeModel!
+}
+
+type Query {
+  coin(id: String!): CoinModel!
+  coins: [CoinModel!]!
+  faq(id: String!): FaqModel!
+  faqs: [FaqModel!]!
+  game(id: String!): GameModel!
+  games: [GameModel!]!
+  slotsPrize(id: String!): SlotsPrizeModel!
+  slotsPrizes: [SlotsPrizeModel!]!
+  user(id: String!): UserModel!
+  users: [UserModel!]!
+  wheelPrize(id: String!): WheelPrizeModel!
+  wheelPrizes: [WheelPrizeModel!]!
+}
+
+input SlotsPrizeDto {
+  img_bl: String!
+  img_sl: String!
+  name: String!
+  number: Int!
+}
+
+type SlotsPrizeModel {
+  createdAt: DateTime!
+  id: String!
+  img_bl: String!
+  img_sl: String!
+  name: String!
+  number: Int!
+  updatedAt: DateTime!
+}
+
+input SlotsPrizeUpdateDto {
+  id: String!
+  img_bl: String
+  img_sl: String
+  name: String
+  number: Int
+}
+
+type UserModel {
+  admin: Boolean
+  avatar: String!
+  balance: Float
+  bets: [BetItemModel!]!
+  createdAt: DateTime!
+  cryptoAccount: String
+  email: String!
+  id: String!
+  inventory: [InventoryItemModel!]!
+  login: String!
+  updatedAt: DateTime!
+}
+
+input UsersCreateDto {
+  admin: Boolean
+  avatar: String! = "https://firebasestorage.googleapis.com/v0/b/course-project-326a3.appspot.com/o/user%2Fcasino-avatar.jpg?alt=media&token=35f4fb67-1de1-43b7-a26a-873983754d12"
+  balance: Float
+  bets: [BetItemInput!]! = []
+  cryptoAccount: String
+  email: String!
+  inventory: [InventoryItemInput!]! = []
+  login: String!
+  password: String!
+}
+
+input UsersUpdateDto {
+  admin: Boolean
+  avatar: String = "https://firebasestorage.googleapis.com/v0/b/course-project-326a3.appspot.com/o/user%2Fcasino-avatar.jpg?alt=media&token=35f4fb67-1de1-43b7-a26a-873983754d12"
+  balance: Float
+  bets: [BetItemInput!] = []
+  cryptoAccount: String
+  email: String
+  id: String!
+  inventory: [InventoryItemInput!] = []
+  login: String
+  password: String
+}
+
+input WheelPrizeDto {
+  name: String!
+}
+
+type WheelPrizeModel {
+  id: String!
+  name: String!
+}
+
+input WheelPrizeUpdateDto {
+  id: String!
+  name: String
+}

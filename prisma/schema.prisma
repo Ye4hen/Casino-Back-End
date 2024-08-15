@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model BetItemModel {
+    id          String     @id @default(dbgenerated()) // Assuming you want to auto-generate an ID
+    coinId      String
+    gameId      String
+    bet         Int
+    UserModel   UserModel? @relation(fields: [userModelId], references: [id])
+    userModelId String?
+}
+
+model InventoryItemModel {
+    id          String     @id @default(dbgenerated()) // Assuming you want to auto-generate an ID
+    amount      Int
+    UserModel   UserModel? @relation(fields: [userModelId], references: [id])
+    userModelId String?
+}
+
+model UserModel {
+    id            String               @id @default(uuid()) // Auto-generates a UUID
+    login         String
+    email         String
+    password      String               @map("password") // Hidden field, managed outside Prisma
+    balance       Float                @default(0)
+    avatar        String               @default("https://firebasestorage.googleapis.com/v0/b/course-project-326a3.appspot.com/o/user%2Fcasino-avatar.jpg?alt=media&token=35f4fb67-1de1-43b7-a26a-873983754d12")
+    inventory     InventoryItemModel[]
+    bets          BetItemModel[]
+    cryptoAccount String               @default("")
+    admin         Boolean              @default(false)
+    createdAt     DateTime             @default(now())
+    updatedAt     DateTime             @updatedAt
+
+    @@map("Users") // Optional if you want to keep the table name the same
+}
+
+model CoinModel {
+    id        String   @id @default(uuid())
+    name      String
+    desc      String
+    category  String
+    price     Float
+    img       String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("Coins")
+}
+
+model GameModel {
+    id        String   @id @default(uuid())
+    name      String
+    category  String
+    img       String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("Games")
+}
+
+model FaqModel {
+    id        String   @id @default(uuid())
+    answer    String
+    isOpen    Boolean
+    question  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("FAQs")
+}
+
+model SlotsPrizeModel {
+    id        String   @id @default(uuid())
+    name      String
+    img_bl    String
+    img_sl    String
+    number    Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("SlotsPrizes")
+}
+
+model WheelPrizeModel {
+    id        String   @id @default(uuid())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("WheelPrizes")
+}
