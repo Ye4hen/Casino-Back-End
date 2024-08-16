@@ -5,6 +5,10 @@ import { ConfigService } from '@nestjs/config';
 import { PrismaService } from 'src/prisma.service'; // Import PrismaService
 import { UserModel, Prisma } from '@prisma/client'; // Import User model
 
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor(
@@ -14,7 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: true,
-			secretOrKey: configService.get('JWT_SECRET')
+			secretOrKey: process.env.JWT_SECRET
 		});
 	}
 
