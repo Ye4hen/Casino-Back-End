@@ -16,7 +16,7 @@ import { WheelPrizesModule } from './wheel_prizes/wheel_prizes.module';
 @Module({
 	imports: [
 		ConfigModule.forRoot({
-			envFilePath: 'example.env'
+			envFilePath: '.env'
 		}),
 		GraphQLModule.forRoot<ApolloDriverConfig>({
 			driver: ApolloDriver,
